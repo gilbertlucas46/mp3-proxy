@@ -14,6 +14,16 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   const referer = req.headers.referer;
+  
+  // Allow direct browser access for testing
+  if (!origin && !referer) {
+    next();
+    return;
+  }
+
+  console.log('Origin:', origin);
+  console.log('Referer:', referer);
+  console.log('Allowed Origins:', allowedOrigins);
 
   if (
     allowedOrigins.includes(origin) ||
