@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
+      - DEFAULT_REFERER=${DEFAULT_REFERER}
+      - DEFAULT_ORIGIN=${DEFAULT_ORIGIN}
+      - ALLOWED_URLS=${ALLOWED_URLS}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
